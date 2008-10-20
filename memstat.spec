@@ -7,6 +7,7 @@ License:	GPL v2
 Group:		Applications
 Source0:	http://ftp.debian.org/debian/pool/main/m/memstat/%{name}_%{version}.tar.gz
 # Source0-md5:	5dd028c194decf7ff83653eea6972cc1
+Patch0:		%{name}-make.patch
 URL:		http://packages.qa.debian.org/m/memstat.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -24,7 +25,7 @@ załadowane.
 
 %prep
 %setup -q
-%{__sed} -e 's,-o root -g root,,g' -i Makefile
+%patch0 -p1
 
 %build
 %{__make} \
@@ -33,12 +34,11 @@ załadowane.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir},%{_mandir}/man1}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{name}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+cp -a %{name}.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
