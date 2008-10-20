@@ -1,0 +1,22 @@
+--- ./Makefile.orig	2008-10-20 19:08:27.029556235 +0300
++++ ./Makefile	2008-10-20 19:08:27.029556235 +0300
+@@ -8,15 +8,15 @@
+ exec_prefix = $(prefix)/usr
+ 
+ INSTALL = install
+-INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
+-INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
+-INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
++INSTALL_PROGRAM = $(INSTALL) -p      -m  755
++INSTALL_FILE    = $(INSTALL) -p      -m  644
++INSTALL_DIR     = $(INSTALL) -p -d   -m  755
+ 
+ ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+ CFLAGS += -g
+ endif
+ ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+-INSTALL_PROGRAM += -s
++INSTALL_PROGRAM += 
+ endif
+ 
+ memstat: memstat.c
