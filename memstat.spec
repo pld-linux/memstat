@@ -1,12 +1,12 @@
 Summary:	Identify what's using up virtual memory
 Summary(pl.UTF-8):	Identyfikacja procesów korzystających z pamięci wirtualnej
 Name:		memstat
-Version:	0.8
+Version:	0.9
 Release:	1
 License:	GPL v2
 Group:		Applications
 Source0:	http://ftp.debian.org/debian/pool/main/m/memstat/%{name}_%{version}.tar.gz
-# Source0-md5:	8ba8c468a414dc1e7d38ea1eb832cf8c
+# Source0-md5:	b4ee74125d9da23d64646f5feee4b149
 Patch0:		%{name}-make.patch
 URL:		http://packages.qa.debian.org/m/memstat.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -24,7 +24,7 @@ współdzielona jest wykorzystywana i jakie starsze wersje bibliotek są
 załadowane.
 
 %prep
-%setup -q
+%setup -q -n %{name}tool
 %patch0 -p1
 
 %build
